@@ -13,6 +13,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
      */
     public RecipeSearchView() {
         initComponents();
+        this.rsp = new RecipeSearchPresenter(difficultyComboBox,  timeSlider,cuisineComboBox, priceSlider, ingredientComboBox);
     }
 
     /**
@@ -42,7 +43,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
         priceSlider = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        recipeList = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -174,12 +175,12 @@ public class RecipeSearchView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        recipeList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(recipeList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -335,7 +336,6 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ingredientComboBox;
     private javax.swing.JLabel ingredientLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -344,6 +344,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JSlider priceSlider;
+    private javax.swing.JList<String> recipeList;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JSeparator searchSeparator1;
     private javax.swing.JSeparator searchSeparator2;
@@ -352,4 +353,5 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JLabel timeLabel;
     private javax.swing.JSlider timeSlider;
     // End of variables declaration//GEN-END:variables
+RecipeSearchPresenter rsp;
 }
