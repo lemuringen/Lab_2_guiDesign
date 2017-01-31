@@ -50,7 +50,7 @@ public List<String> searchRecipe(){
    this.recipes = new ArrayList();
    
    for(Recipe r: tmpRecipes){
-       if(r.getMatch()>= 40){
+       if(r.getMatch()>= 50){
            recipeNames.add(r.getName());
            this.recipes.add(r);
        }

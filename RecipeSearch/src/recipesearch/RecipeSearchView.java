@@ -13,7 +13,8 @@ public class RecipeSearchView extends javax.swing.JFrame {
      */
     public RecipeSearchView() {
         initComponents();
-        this.rsp = new RecipeSearchPresenter(difficultyComboBox,  timeSlider,cuisineComboBox, priceSlider, ingredientComboBox);
+        this.rsp = new RecipeSearchPresenter(difficultyComboBox,  timeSlider,cuisineComboBox, priceSlider, ingredientComboBox, recipeList, recipePictureJLabel);
+        
     }
 
     /**
@@ -45,7 +46,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         recipeList = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        recipePictureJLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -66,6 +67,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
         ingredientLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         ingredientComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inget Val", "Kött", "Kyckling", "Fisk", "Vegetariskt" }));
+        ingredientComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ingredientComboBoxItemStateChanged(evt);
+            }
+        });
 
         searchSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -74,6 +80,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
         cuisineLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         cuisineComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inget Val", "Sverige", "Grekland", "Indien", "Asien", "Afrika", "Frankrike" }));
+        cuisineComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cuisineComboBoxItemStateChanged(evt);
+            }
+        });
 
         searchSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -82,6 +93,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
         difficultyLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inget Val", "Lätt", "Mellan", "Svår" }));
+        difficultyComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                difficultyComboBoxItemStateChanged(evt);
+            }
+        });
 
         searchSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -94,6 +110,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
         timeSlider.setPaintLabels(true);
         timeSlider.setPaintTicks(true);
         timeSlider.setSnapToTicks(true);
+        timeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                timeSliderStateChanged(evt);
+            }
+        });
 
         priceLabel.setText("Maxpris:");
 
@@ -102,6 +123,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
         priceSlider.setMinorTickSpacing(50);
         priceSlider.setPaintLabels(true);
         priceSlider.setPaintTicks(true);
+        priceSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                priceSliderStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -175,10 +201,10 @@ public class RecipeSearchView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        recipeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        recipeList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                recipeListValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(recipeList);
 
@@ -195,9 +221,9 @@ public class RecipeSearchView extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("image");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        recipePictureJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        recipePictureJLabel.setText("image");
+        recipePictureJLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -230,7 +256,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(recipePictureJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -241,7 +267,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(recipePictureJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -322,6 +348,30 @@ public class RecipeSearchView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    private void ingredientComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ingredientComboBoxItemStateChanged
+        rsp.updateIngredient();
+    }//GEN-LAST:event_ingredientComboBoxItemStateChanged
+
+    private void cuisineComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cuisineComboBoxItemStateChanged
+        rsp.updateCuisine();
+    }//GEN-LAST:event_cuisineComboBoxItemStateChanged
+
+    private void difficultyComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_difficultyComboBoxItemStateChanged
+        rsp.updateDifficulty();
+    }//GEN-LAST:event_difficultyComboBoxItemStateChanged
+
+    private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
+        rsp.updateMaxTime();
+    }//GEN-LAST:event_timeSliderStateChanged
+
+    private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSliderStateChanged
+        rsp.updateMaxPrice();
+    }//GEN-LAST:event_priceSliderStateChanged
+
+    private void recipeListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_recipeListValueChanged
+        rsp.showRecipe();
+    }//GEN-LAST:event_recipeListValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -335,7 +385,6 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JComboBox<String> ingredientComboBox;
     private javax.swing.JLabel ingredientLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -345,6 +394,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JLabel priceLabel;
     private javax.swing.JSlider priceSlider;
     private javax.swing.JList<String> recipeList;
+    private javax.swing.JLabel recipePictureJLabel;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JSeparator searchSeparator1;
     private javax.swing.JSeparator searchSeparator2;

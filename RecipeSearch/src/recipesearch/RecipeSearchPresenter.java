@@ -6,6 +6,7 @@
 package recipesearch;
 import java.util.List;
 import javax.swing.*;
+import se.chalmers.ait.dat215.lab2.Recipe;
 
 public class RecipeSearchPresenter {
     private JComboBox<String> cuisineComboBox;
@@ -15,34 +16,33 @@ public class RecipeSearchPresenter {
     private JList<String> recipeList;
     private JSlider timeSlider;
     private RecipeSearchModel model;
+    private JLabel recipePictureJLabel;
     
     public RecipeSearchPresenter(JComboBox<String> difficultyComboBox,
             JSlider timeSlider, JComboBox<String> cuisineComboBox, 
-            JSlider priceSlider, JComboBox<String> ingredientComboBox){
+            JSlider priceSlider, JComboBox<String> ingredientComboBox, JList<String> recipeList, JLabel recipePictureJLabel){
         this.difficultyComboBox = difficultyComboBox;
         this.timeSlider = timeSlider;
         this.cuisineComboBox = cuisineComboBox; 
         this.priceSlider = priceSlider;
         this.ingredientComboBox = ingredientComboBox;
+        this.recipeList = recipeList;
+        this.recipePictureJLabel = recipePictureJLabel;
         
         this.model = new RecipeSearchModel();
-        
-        this.difficultyComboBox = new JComboBox(new String[]{"Lätt", "Mellan", "Svår"});
-        this.timeSlider = new JSlider(10, 150, 45);
-        this.cuisineComboBox = new JComboBox(new String[] {"Sverige", "Grekland", "Indien", "Asien", "Afrika", "Frankrike"}); 
-        this.priceSlider = new JSlider(10, 300, 50);
-        this.ingredientComboBox = new JComboBox(new String[]{"Kött", "Fisk", "Kyckling", "Vegetarisk"});
+  
     }
     public void searchRecipe(){
-        // dåligt?
-        String[] fulHack = new String[100];
+        // dåligt
         List<String> tmp = model.searchRecipe();
+        String[] fulHack = new String[tmp.size()];
         int i = 0;
         for(String s: tmp){
+            System.out.println(s);
             fulHack[i] = s;
             i++;
         }
-        recipeList = new JList(fulHack);
+        recipeList.setListData(fulHack);
         //recipeList = new JList(new String[]{""});
     }
     public void updateMaxPrice(){
@@ -64,5 +64,11 @@ public class RecipeSearchPresenter {
     public void updateIngredient(){
         model.setIngredient((String)this.ingredientComboBox.getSelectedItem());
         searchRecipe();        
+    }
+    public void showRecipe(){
+        //
+        
+        Recipe r = model.showRecipe((String)this.recipeList.getSelectedValue());
+        this.recipePictureJLabel.setIcon(r.getImage());
     }
 }
