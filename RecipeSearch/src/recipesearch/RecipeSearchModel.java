@@ -6,11 +6,11 @@ import java.util.List;
 import se.chalmers.ait.dat215.lab2.*;
 
 public class RecipeSearchModel {
-private String difficulty = "Lätt";
-private int maxTime = 50;
-private String cuisine = "Sverige";
+private String difficulty;
+private int maxTime;
+private String cuisine;
 private int maxPrice;
-private String ingredient = "Vegetarisk";
+private String ingredient;
 private int matchTreshold;
 private final RecipeDatabase db;
 private List <Recipe> recipes;
