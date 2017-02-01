@@ -29,22 +29,20 @@ public class RecipeSearchPresenter {
         this.recipeList = recipeList;
         this.recipePictureJLabel = recipePictureJLabel;
         
-        this.model = new RecipeSearchModel();
+        this.model = new RecipeSearchModel(null,0,null,0,null,50);
   
     }
-    public void searchRecipe(){
-        // dåligt
+    private void searchRecipe(){
+        // Search  recipes and set JList (recipeList) with data
         List<String> tmp = model.searchRecipe();
-        String[] fulHack = new String[tmp.size()];
-        int i = 0;
-        for(String s: tmp){
-            System.out.println(s);
-            fulHack[i] = s;
-            i++;
+        String[] hitList = new String[tmp.size()];
+        
+        for(int i = 0; i < tmp.size(); i++ ){
+            System.out.println(tmp.get(i));
+            hitList[i] = tmp.get(i);
         }
-        recipeList.setListData(fulHack);
-        //recipeList = new JList(new String[]{""});
-    }
+        recipeList.setListData(hitList);
+        }
     public void updateMaxPrice(){
         model.setMaxPrice(this.priceSlider.getValue());
         searchRecipe();
@@ -66,9 +64,8 @@ public class RecipeSearchPresenter {
         searchRecipe();        
     }
     public void showRecipe(){
-        //
-        
-        Recipe r = model.showRecipe((String)this.recipeList.getSelectedValue());
+        // For showing recipe in detail view
+        Recipe r = model.getRecipe((String)this.recipeList.getSelectedValue());
         this.recipePictureJLabel.setIcon(r.getImage());
     }
 }

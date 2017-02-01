@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package recipesearch;
 //import Libraries.
 
@@ -10,24 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import se.chalmers.ait.dat215.lab2.*;
 
-
-
-
-/**
- *
- * @author JesperU
- */
 public class RecipeSearchModel {
 private String difficulty = "Lätt";
 private int maxTime = 50;
 private String cuisine = "Sverige";
-private int maxPrice = 100;
+private int maxPrice;
 private String ingredient = "Vegetarisk";
+private int matchTreshold;
 private final RecipeDatabase db;
 private List <Recipe> recipes;
 
-public RecipeSearchModel(){
-        this.db = RecipeDatabase.getSharedInstance();
+
+public RecipeSearchModel(String difficulty, int maxTime, String cuisine, 
+        int maxPrice, String ingredient, int matchTreshold){
+    this.db = RecipeDatabase.getSharedInstance();
+    this.difficulty = difficulty;
+    this.maxTime = maxTime;
+    this.cuisine = cuisine; 
+    this.maxPrice = maxPrice;
+    this.ingredient = ingredient;
+    this.matchTreshold = matchTreshold;
+}
+public void setmatchTreshold(int matchTreshold){
+    this.matchTreshold = matchTreshold;
 }
 public void setDifficulty(String difficulty){
     this.difficulty = difficulty;
@@ -45,19 +45,19 @@ public void setIngredient(String ingredient){
     this.ingredient = ingredient;
 }
 public List<String> searchRecipe(){
-   List<Recipe> tmpRecipes = db.search(new SearchFilter(this.difficulty, this.maxTime, this.cuisine, this.maxPrice, this.ingredient));
+   List <Recipe> tmpRecipes = db.search(new SearchFilter(this.difficulty, this.maxTime, this.cuisine, this.maxPrice, this.ingredient));
    List <String> recipeNames = new ArrayList();
    this.recipes = new ArrayList();
    
    for(Recipe r: tmpRecipes){
-       if(r.getMatch()>= 50){
+       if(r.getMatch()>= this.matchTreshold){
            recipeNames.add(r.getName());
            this.recipes.add(r);
        }
    }
    return recipeNames;
 }    
-public Recipe showRecipe(String recipeName){
+public Recipe getRecipe(String recipeName){
     // should check if recies intaniziated or do it in the constructor
        for(Recipe r: this.recipes){
        if(r.getName().equals(recipeName)){
