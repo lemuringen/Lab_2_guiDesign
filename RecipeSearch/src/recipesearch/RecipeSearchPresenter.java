@@ -85,7 +85,7 @@ public class RecipeSearchPresenter {
             hitList[i] = tmp.get(i);
         }
         recipeList.setListData(hitList);
-        }
+    }
     public void updateMaxPrice(){
         model.setMaxPrice(this.priceSlider.getValue());
         searchRecipe();
@@ -114,8 +114,7 @@ public class RecipeSearchPresenter {
         this.descriptionTextArea.setText(r.getDescription());
         this.instructionTextArea.setText(r.getInstruction());
         this.difficultyFieldLabel.setText(r.getDifficulty());
-        //detailInstruction;
-        this.matchFieldLabel.setText(r.getMatch()+ "%");
+        this.matchFieldLabel.setText(r.getMatch()+ "% sökträff");
         this.servingsFieldLabel.setText(r.getServings()+"");
         this.priceFieldLabel.setText(r.getPrice()+ " Kr");
         this.timeFieldLabel.setText(r.getTime()+ " minuter");
