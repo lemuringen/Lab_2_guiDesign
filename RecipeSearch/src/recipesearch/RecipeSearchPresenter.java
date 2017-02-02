@@ -15,6 +15,7 @@ import se.chalmers.ait.dat215.lab2.Ingredient;
 import se.chalmers.ait.dat215.lab2.Recipe;
 
 public class RecipeSearchPresenter {
+    
     private JComboBox<String> cuisineComboBox;
     private JComboBox<String> difficultyComboBox;
     private JComboBox<String> ingredientComboBox;
@@ -22,17 +23,19 @@ public class RecipeSearchPresenter {
     private JList<String> recipeList;
     private JSlider timeSlider;
     private RecipeSearchModel model;
-    private JLabel recipePictureJLabel;
-    private JLabel detailCuisine;
-    private JTextArea detailDescription;
-    private JLabel detailDifficulty;
-    private JTextArea detailInstruction;
-    private JLabel detailMatch;
-    private JLabel detailPortions;
-    private JLabel detailPrice;
-    private JLabel detailTime;
-    private JLabel detailTitle;
-    private JTextArea detailIngredient;
+    private JLabel recipePictureLabel;
+    private JLabel cuisineFieldLabel;
+    private JTextArea descriptionTextArea;
+    private JLabel difficultyFieldLabel;
+    private JTextArea instructionTextArea;
+    private JLabel matchFieldLabel;
+    private JLabel servingsFieldLabel;
+    private JLabel priceFieldLabel;
+    private JLabel timeFieldLabel;
+    private JLabel titleFieldLabel;
+    private JTextArea ingredientsTextArea;
+    private JLabel mainIngredientFieldLabel;
+    
     public RecipeSearchPresenter(
             JComboBox<String> difficultyComboBox,
             JSlider timeSlider, 
@@ -40,33 +43,36 @@ public class RecipeSearchPresenter {
             JSlider priceSlider, 
             JComboBox<String> ingredientComboBox, 
             JList<String> recipeList, 
-            JLabel recipePictureJLabel,
-            JLabel detailCuisine,
-            JTextArea detailDescription,
-            JLabel detailDifficulty,
-            JTextArea detailInstruction,
-            JLabel detailPortions,
-            JLabel detailPrice,
-            JLabel detailTime,
-            JLabel detailTitle,
-            JTextArea detailIngredient){
+            JLabel recipePictureLabel,
+            JLabel cuisineFieldLabel,
+            JTextArea descriptionTextArea,
+            JLabel difficultyFieldLabel,
+            JTextArea instructionTextArea,
+            JLabel servingsFieldLabel,
+            JLabel priceFieldLabel,
+            JLabel matchFieldLabel,
+            JLabel timeFieldLabel,
+            JLabel titleFieldLabel,
+            JTextArea ingredientsTextArea,
+            JLabel mainIngredientFieldLabel){
         this.difficultyComboBox = difficultyComboBox;
         this.timeSlider = timeSlider;
         this.cuisineComboBox = cuisineComboBox; 
         this.priceSlider = priceSlider;
         this.ingredientComboBox = ingredientComboBox;
         this.recipeList = recipeList;
-        this.recipePictureJLabel = recipePictureJLabel;
-        this.detailCuisine = detailCuisine;
-        this.detailDescription = detailDescription;
-        this.detailDifficulty = detailDifficulty;
-        this.detailInstruction = detailInstruction;
-        this.detailMatch = detailMatch;
-        this.detailPortions = detailPortions;
-        this.detailPrice = detailPrice;
-        this.detailTime = detailTime;
-        this.detailTitle = detailTitle;
-        this.detailIngredient = detailIngredient;
+        this.recipePictureLabel = recipePictureLabel;
+        this.cuisineFieldLabel = cuisineFieldLabel;
+        this.descriptionTextArea = descriptionTextArea;
+        this.difficultyFieldLabel = difficultyFieldLabel;
+        this.instructionTextArea = instructionTextArea;
+        this.matchFieldLabel = matchFieldLabel;
+        this.servingsFieldLabel = servingsFieldLabel;
+        this.priceFieldLabel = priceFieldLabel;
+        this.timeFieldLabel = timeFieldLabel;
+        this.titleFieldLabel = titleFieldLabel;
+        this.ingredientsTextArea = ingredientsTextArea;
+        this.mainIngredientFieldLabel = mainIngredientFieldLabel;
         this.model = new RecipeSearchModel(null,0,null,0,null,50);
   
     }
@@ -103,20 +109,21 @@ public class RecipeSearchPresenter {
     public void showRecipe(){
         // For showing recipe in detail view
         Recipe r = model.getRecipe((String)this.recipeList.getSelectedValue());       
-        this.recipePictureJLabel.setIcon(r.getImage());
-        this.detailCuisine.setText(r.getCuisine());
-        this.detailDescription.setText(r.getDescription());
-        this.detailInstruction.setText(r.getInstruction());
-        this.detailDifficulty.setText(r.getDifficulty());
-       //detailInstruction;
-        this.detailMatch.setText(r.getMatch()+ "%");
-        this.detailPortions.setText(r.getServings()+"");
-        this.detailPrice.setText(r.getPrice()+ " Kr");
-        this.detailTime.setText(r.getTime()+ " minuter");
-        this.detailTitle.setText(r.getName());
-        this.detailIngredient.setText(null);
+        this.recipePictureLabel.setIcon(r.getImage());
+        this.cuisineFieldLabel.setText(r.getCuisine());
+        this.descriptionTextArea.setText(r.getDescription());
+        this.instructionTextArea.setText(r.getInstruction());
+        this.difficultyFieldLabel.setText(r.getDifficulty());
+        //detailInstruction;
+        this.matchFieldLabel.setText(r.getMatch()+ "%");
+        this.servingsFieldLabel.setText(r.getServings()+"");
+        this.priceFieldLabel.setText(r.getPrice()+ " Kr");
+        this.timeFieldLabel.setText(r.getTime()+ " minuter");
+        this.titleFieldLabel.setText(r.getName());
+        this.mainIngredientFieldLabel.setText(r.getMainIngredient());
+        this.ingredientsTextArea.setText(null);
         for(Ingredient i: r.getIngredients()){
-     this.detailIngredient.append(i.toString() + "\n");
+        this.ingredientsTextArea.append(i.toString() + "\n");
         }
     }
 }
