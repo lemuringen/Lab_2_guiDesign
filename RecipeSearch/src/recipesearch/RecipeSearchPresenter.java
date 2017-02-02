@@ -108,7 +108,11 @@ public class RecipeSearchPresenter {
     }
     public void showRecipe(){
         // For showing recipe in detail view
-        Recipe r = model.getRecipe((String)this.recipeList.getSelectedValue());       
+        
+        Recipe r = model.getRecipe((String)this.recipeList.getSelectedValue());
+        if(r==null){
+            return;
+        }
         this.recipePictureLabel.setIcon(r.getImage());
         this.cuisineFieldLabel.setText(r.getCuisine());
         this.descriptionTextArea.setText(r.getDescription());
