@@ -45,7 +45,6 @@ public class RecipeSearchPresenter {
             JTextArea detailDescription,
             JLabel detailDifficulty,
             JTextArea detailInstruction,
-            JLabel detailMatch,
             JLabel detailPortions,
             JLabel detailPrice,
             JLabel detailTime,
