@@ -45,17 +45,7 @@ public void setIngredient(String ingredient){
     this.ingredient = ingredient;
 }
 public List<String> searchRecipe(){
-   List <Recipe> tmpRecipes = db.search(new SearchFilter(this.difficulty, this.maxTime, this.cuisine, this.maxPrice, this.ingredient));
-   List <String> recipeNames = new ArrayList();
-   this.recipes = new ArrayList();
-   
-   for(Recipe r: tmpRecipes){
-       if(r.getMatch()>= this.matchTreshold){
-           recipeNames.add(r.getName());
-           this.recipes.add(r);
-       }
-   }
-   return recipeNames;
+   return searchRecipe(this.difficulty, this.maxTime, this.cuisine, this.maxPrice, this.ingredient);
 }    
 public List<String> searchRecipe(String difficulty, int maxTime, String cuisine, int maxPrice, String ingredient){
    List <Recipe> tmpRecipes = db.search(new SearchFilter(difficulty, maxTime, cuisine, maxPrice, ingredient));
