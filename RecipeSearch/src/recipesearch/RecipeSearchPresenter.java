@@ -11,24 +11,24 @@ import se.chalmers.ait.dat215.lab2.Recipe;
 
 public class RecipeSearchPresenter {
     
-    private JComboBox<String> cuisineComboBox;
-    private JComboBox<String> difficultyComboBox;
-    private JComboBox<String> ingredientComboBox;
-    private JSlider priceSlider;
-    private JList<String> recipeList;
-    private JSlider timeSlider;
-    private RecipeSearchModel model;
-    private JLabel recipePictureLabel;
-    private JLabel cuisineFieldLabel;
-    private JTextArea descriptionTextArea;
-    private JLabel difficultyFieldLabel;
-    private JTextArea instructionTextArea;
-    private JLabel servingsFieldLabel;
-    private JLabel priceFieldLabel;
-    private JLabel timeFieldLabel;
-    private JLabel titleFieldLabel;
-    private JTextArea ingredientsTextArea;
-    private JLabel mainIngredientFieldLabel;
+    final private JComboBox<String> cuisineComboBox;
+    final private JComboBox<String> difficultyComboBox;
+    final private JComboBox<String> ingredientComboBox;
+    final private JSlider priceSlider;
+    final private JList<String> recipeList;
+    final private JSlider timeSlider;
+    final private RecipeSearchModel model;
+    final private JLabel recipePictureLabel;
+    final private JLabel cuisineFieldLabel;
+    final private JTextArea descriptionTextArea;
+    final private JLabel difficultyFieldLabel;
+    final private JTextArea instructionTextArea;
+    final private JLabel servingsFieldLabel;
+    final private JLabel priceFieldLabel;
+    final private JLabel timeFieldLabel;
+    final private JLabel titleFieldLabel;
+    final private JTextArea ingredientsTextArea;
+    final private JLabel mainIngredientFieldLabel;
     
     public RecipeSearchPresenter(
             JComboBox<String> difficultyComboBox,
