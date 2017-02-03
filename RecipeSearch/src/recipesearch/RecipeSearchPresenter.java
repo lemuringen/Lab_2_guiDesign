@@ -4,13 +4,8 @@
  * and open the template in the editor.
  */
 package recipesearch;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
 import se.chalmers.ait.dat215.lab2.Ingredient;
 import se.chalmers.ait.dat215.lab2.Recipe;
 
@@ -28,7 +23,6 @@ public class RecipeSearchPresenter {
     private JTextArea descriptionTextArea;
     private JLabel difficultyFieldLabel;
     private JTextArea instructionTextArea;
-    private JLabel matchFieldLabel;
     private JLabel servingsFieldLabel;
     private JLabel priceFieldLabel;
     private JLabel timeFieldLabel;
@@ -50,7 +44,6 @@ public class RecipeSearchPresenter {
             JTextArea instructionTextArea,
             JLabel servingsFieldLabel,
             JLabel priceFieldLabel,
-            JLabel matchFieldLabel,
             JLabel timeFieldLabel,
             JLabel titleFieldLabel,
             JTextArea ingredientsTextArea,
@@ -66,7 +59,6 @@ public class RecipeSearchPresenter {
         this.descriptionTextArea = descriptionTextArea;
         this.difficultyFieldLabel = difficultyFieldLabel;
         this.instructionTextArea = instructionTextArea;
-        this.matchFieldLabel = matchFieldLabel;
         this.servingsFieldLabel = servingsFieldLabel;
         this.priceFieldLabel = priceFieldLabel;
         this.timeFieldLabel = timeFieldLabel;
@@ -123,7 +115,6 @@ public class RecipeSearchPresenter {
         this.descriptionTextArea.setText(r.getDescription());
         this.instructionTextArea.setText(r.getInstruction());
         this.difficultyFieldLabel.setText(r.getDifficulty());
-        this.matchFieldLabel.setText(r.getMatch()+ "% sökträff");
         this.servingsFieldLabel.setText(r.getServings()+"");
         this.priceFieldLabel.setText(r.getPrice()+ " Kr");
         this.timeFieldLabel.setText(r.getTime()+ " minuter");
