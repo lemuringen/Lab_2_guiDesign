@@ -74,8 +74,9 @@ public class RecipeSearchPresenter {
         this.ingredientsTextArea = ingredientsTextArea;
         this.mainIngredientFieldLabel = mainIngredientFieldLabel;
         this.model = new RecipeSearchModel(null,0,null,0,null,50);
-  
+        showRecipe(this.model.getRandomRecipe());
     }
+
     private void searchRecipe(){
         // Search  recipes and set JList (recipeList) with data
         List<String> tmp = model.searchRecipe();
@@ -113,6 +114,10 @@ public class RecipeSearchPresenter {
         if(r==null){
             return;
         }
+        showRecipe(r);
+    }
+        public void showRecipe(Recipe r){
+        // For showing recipe in detail view
         this.recipePictureLabel.setIcon(r.getImage());
         this.cuisineFieldLabel.setText(r.getCuisine());
         this.descriptionTextArea.setText(r.getDescription());

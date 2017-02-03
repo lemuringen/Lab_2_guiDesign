@@ -57,6 +57,19 @@ public List<String> searchRecipe(){
    }
    return recipeNames;
 }    
+public List<String> searchRecipe(String difficulty, int maxTime, String cuisine, int maxPrice, String ingredient){
+   List <Recipe> tmpRecipes = db.search(new SearchFilter(difficulty, maxTime, cuisine, maxPrice, ingredient));
+   List <String> recipeNames = new ArrayList();
+   this.recipes = new ArrayList();
+   
+   for(Recipe r: tmpRecipes){
+       if(r.getMatch()>= this.matchTreshold){
+           recipeNames.add(r.getName());
+           this.recipes.add(r);
+       }
+   }
+   return recipeNames;
+}    
 public Recipe getRecipe(String recipeName){
     // should check if recies intaniziated or do it in the constructor
        for(Recipe r: this.recipes){
@@ -66,4 +79,49 @@ public Recipe getRecipe(String recipeName){
    }
        return null; // FIX
 }
+   public Recipe getRandomRecipe(){
+       String difficulty;
+       int maxTime;
+       String cuisine;
+       int maxPrice;
+       String mainIngredient;
+       maxTime = 150*(int)Math.random();
+       maxPrice = 200 * (int)Math.random();
+       int r = 3*(int)Math.random();
+       if(r == 0){
+        difficulty = "Lätt";   
+       }else if(r == 1){
+        difficulty = "Mellan";
+       }else{
+        difficulty = "Svår";
+       }
+       
+       r = 6*(int)Math.random();
+       if(r == 0){
+        cuisine = "Sverige";   
+       }else if(r == 1){
+           cuisine = "Frankrike";
+       }else if (r == 2){
+           cuisine = "Asien";
+       }else if (r == 3){
+           cuisine = "Afrika";
+       }else if (r == 4){
+           cuisine = "Indien";
+       }else{
+           cuisine = "Grekland";
+       }
+       
+       r = 4*(int)Math.random();
+       if(r == 0){
+           mainIngredient = "Kött";
+       }else if(r == 1){
+           mainIngredient = "Fisk";
+       }else if (r == 2){
+           mainIngredient = "Kyckling";
+       }else{
+           mainIngredient = "Vegetariskt";
+       }
+   List <String> li = searchRecipe(difficulty, maxTime, cuisine, maxPrice, mainIngredient);
+   return getRecipe(li.get(0));
+   }
 }
