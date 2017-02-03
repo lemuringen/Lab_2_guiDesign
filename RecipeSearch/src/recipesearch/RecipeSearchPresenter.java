@@ -118,7 +118,7 @@ public class RecipeSearchPresenter {
     }
         public void showRecipe(Recipe r){
         // For showing recipe in detail view
-        this.recipePictureLabel.setIcon(r.getImage());
+        this.recipePictureLabel.setIcon(r.getImage(420, 300));
         this.cuisineFieldLabel.setText(r.getCuisine());
         this.descriptionTextArea.setText(r.getDescription());
         this.instructionTextArea.setText(r.getInstruction());

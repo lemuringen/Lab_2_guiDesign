@@ -87,7 +87,7 @@ public Recipe getRecipe(String recipeName){
        String mainIngredient;
        maxTime = 150*(int)Math.random();
        maxPrice = 200 * (int)Math.random();
-       int r = 3*(int)Math.random();
+       int r = (int)(3*Math.random());
        if(r == 0){
         difficulty = "Lätt";   
        }else if(r == 1){
@@ -96,7 +96,7 @@ public Recipe getRecipe(String recipeName){
         difficulty = "Svår";
        }
        
-       r = 6*(int)Math.random();
+       r = (int)(6*Math.random());
        if(r == 0){
         cuisine = "Sverige";   
        }else if(r == 1){
@@ -111,7 +111,7 @@ public Recipe getRecipe(String recipeName){
            cuisine = "Grekland";
        }
        
-       r = 4*(int)Math.random();
+       r = (int)(4*Math.random());
        if(r == 0){
            mainIngredient = "Kött";
        }else if(r == 1){
